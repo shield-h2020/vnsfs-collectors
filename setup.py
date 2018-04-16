@@ -11,7 +11,7 @@ setup(
     description='Distributed Collector transmits to Kafka cluster already processed '
         'files in a comma-separated (CSV) output format.',
     author='Space Hellas S.A.',
-    author_email='ktzoulas@gmail.gr',
+    author_email='ktzoulas@gmail.com',
     url='https://www.space.gr/',
     license='Apache License 2.0',
     packages=find_packages(),
