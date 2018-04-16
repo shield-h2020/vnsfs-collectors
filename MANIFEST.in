@@ -1,0 +1,4 @@
+include .d-collector.json
+include LICENSE
+include README.md
+include requirements.txt
