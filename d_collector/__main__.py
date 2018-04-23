@@ -5,7 +5,7 @@
     Main command-line entry point.
 '''
 
-__version__ = '0.9.2 beta'
+__version__ = '0.9.7b0'
 
 import json
 import os
@@ -68,12 +68,12 @@ def parse_args():
     :returns: On success, a namedtuple of Values instances.
     '''
     parser   = ArgumentParser(
-        prog='dc',
+        prog='d-collector',
         description='Distributed Collector transmits to Kafka cluster already processed '
             'files in a comma-separated (CSV) output format.',
         epilog='END',
         formatter_class=lambda prog: HelpFormatter(prog, max_help_position=36, width=80),
-        usage='dc [OPTIONS]... -t <pipeline> --topic <topic>')
+        usage='d-collector [OPTIONS]... -t <pipeline> --topic <topic>')
 
     # .................................set optional arguments
     parser._optionals.title = 'Optional Arguments'

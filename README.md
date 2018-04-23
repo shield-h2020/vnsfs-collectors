@@ -12,26 +12,35 @@ Dependencies in Python:
 * [kafka-python](https://github.com/dpkp/kafka-python) - Python client for the Apache Kafka distributed stream processing system.
 * [watchdog](https://pypi.python.org/pypi/watchdog) - Python API and shell utilities to monitor file system events.
 
+Dependencies in Linux OS:
+* [pip](https://pypi.org/project/pip/) - Python package manager.
+
 In addition, for processing some pipelines, it will be needed to install the appropriate tools:
 * [spot-nfdump](https://github.com/Open-Network-Insight/spot-nfdump) - Nfdump version for processing netflow.
 * [tshark](https://www.wireshark.org/download.html) - A part of wireshark distribution for processing pcap files.
 
 ## Installation
 Installation of the Distributed Collector requires a user with `sudo` privileges.
-1. Create the archive of the default format for the current platform:<br />
-  `python setup.py sdist`
-2. Install the source distribution you created:<br />
-  `sudo -H pip install distributed-collector-0.9.2.beta.tar.gz`
+1. Install packages from the given requirements file:<br />
+  `sudo -H pip install -r requirements.txt`
+
+2. Install package:<br />
+  `sudo python setup.py install --record install-files.txt`
+
+To uninstall Distributed Collector, just delete installation files:<br />
+  `cat install-files.txt | sudo xargs rm -rf`
 
 If you want to avoid granting `sudo` permissions to the user (or keeping isolated the current installation from the rest of the system), use the `virtualenv` package.
 1. Install `virtualenv` package as `root` user:<br />
   `sudo apt-get -y install python-virtualenv`
+
 2. Switch to your user and create an isolated virtual environment:<br />
   `virtualenv --no-site-packages venv`
-3. Activate the virtual environment and install the Distributed Collector:<br />
+
+3. Activate the virtual environment and install source distribution:<br />
   `source venv/bin/activate`<br />
-  `python setup.py sdist`<br />
-  `pip install distributed-collector-0.9.2.beta.tar.gz`
+  `pip install -r requirements.txt`<br />
+  `python setup.py install`
 
 ## Configuration
 After the installation, a configuration file (in `JSON` format) will be generated under the user's home directory (`~/.d-collector.json`).
@@ -122,7 +131,7 @@ This example only defines mandatory configurations - all other parameters get de
 ### Print Usage Message
 Before you start using the Distributed Collector, you should print the usage message and check the available options.
 
-    usage: dc [OPTIONS]... -t <pipeline> --topic <topic>
+    usage: d-collector [OPTIONS]... -t <pipeline> --topic <topic>
     
     Distributed Collector transmits to Kafka cluster already processed files in a
     comma-separated (CSV) output format.
@@ -145,11 +154,14 @@ Before you start using the Distributed Collector, you should print the usage mes
 
 The only mandatory arguments for the Distributed Collector are the topic and the type of the pipeline (`flow`, `dns` or `proxy`). Distributed Collector _does not create a new topic_, so you have to pass _an existing one_. By default, it loads configuration parameters from the `~/.d-collector.json` file, but you can override it with `-c FILE, --config-file FILE` option.
 
-### Run `dc` Command
+### Run `d-collector` Command
 To start Distributed Collector:<br />
-  `dc -t "pipeline_configuration" --topic "my_topic"`
+  `d-collector -t "pipeline_configuration" --topic "my_topic"`
 
 Some examples are given below:<br />
-1. `dc -t flow --topic SPOT-INGEST-TEST-TOPIC`<br />
-2. `dc -t flow --topic SPOT-INGEST-TEST-TOPIC --partition 2 --config-file /tmp/another_ingest_conf.json`<br />
-3. `dc -t proxy --topic SPOT-PROXY-TOPIC --log-level DEBUG`<br />
+1. `d-collector -t flow --topic SPOT-INGEST-TEST-TOPIC`<br />
+2. `d-collector -t flow --topic SPOT-INGEST-TEST-TOPIC --partition 2 --config-file /tmp/another_ingest_conf.json`<br />
+3. `d-collector -t proxy --topic SPOT-PROXY-TOPIC --log-level DEBUG`
+
+### Acknowledgement
+The work for this contribution has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No700199.
