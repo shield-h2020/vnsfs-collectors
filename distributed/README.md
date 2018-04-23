@@ -22,6 +22,10 @@ In addition, for processing some pipelines, it will be needed to install the app
 
 ## Installation
 
+Two alternative means are available: directly on the host (_base environment_) or in a virtual environment.
+
+### Base environment
+
 Installation of the Distributed Collector requires a user with `sudo` privileges.
 1. Install packages from the given requirements file:
    ```
@@ -32,6 +36,8 @@ Installation of the Distributed Collector requires a user with `sudo` privileges
    ```
    sudo python setup.py install --record install-files.txt
    ```
+
+### Virtual environment
 
 If you want to avoid granting `sudo` permissions to the user (or keeping isolated the current installation from the rest of the system), use the `virtualenv` package.
 1. Install `virtualenv` package as `root` user:
@@ -197,19 +203,20 @@ If no longer needed, the package can be removed as follows (`sudo` may be requir
    rm ~/.d-collector.json
    ```
 
-## Virtual environment
-
-1. To deactivate the environment:
-   ```
-   (venv) $ deactivate 
-   ```
-
-## Base environment
+### Base environment
 
 1. To uninstall the Distributed Collector, just delete the installation files:
    ```
    cat install-files.txt | sudo xargs rm -rf
    ```
 
+### Virtual environment
+
+1. To deactivate the environment:
+   ```
+   (venv) $ deactivate 
+   ```
+
 ### Acknowledgement
 The work for this contribution has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No700199.
+
