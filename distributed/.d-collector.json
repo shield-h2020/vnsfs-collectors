@@ -23,6 +23,24 @@
             "local_staging": "/tmp",
             "process_opts": ""
         },
+        "ids_event": {
+            "file_watcher": {
+                "collector_path": "/collector/path",
+                "recursive": "true",
+                "supported_files": [".*.json"]
+            },
+            "local_staging": "/tmp",
+            "process_opts": ""
+        },
+        "ids_packet": {
+            "file_watcher": {
+                "collector_path": "/collector/path",
+                "recursive": "true",
+                "supported_files": [".*.json"]
+            },
+            "local_staging": "/tmp",
+            "process_opts": ""
+        },
         "proxy": {
             "file_watcher": {
                 "collector_path": "/collector/path",

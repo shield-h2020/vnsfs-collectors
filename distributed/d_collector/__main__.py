@@ -5,7 +5,7 @@
     Main command-line entry point.
 '''
 
-__version__ = '0.9.7b0'
+__version__ = '0.9.8b0'
 
 import json
 import os

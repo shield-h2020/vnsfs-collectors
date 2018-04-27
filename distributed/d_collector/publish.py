@@ -61,7 +61,8 @@ def publish(rawfile, tmpdir, opts, datatype, topic, partition, skip_conv, **kwar
         logger.info('Group lines of text-converted file and prepare to publish them.')
 
         for segmentid, datatuple in enumerate(partitioner):
-            try: send_async(segmentid, *datatuple)
+            try:
+                allpassed &= send_async(segmentid, *datatuple)
             except RuntimeError: allpassed = False
 
         os.remove(staging)
