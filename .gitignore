@@ -1,0 +1,7 @@
+**/build/
+**/dist/
+**/install-files.txt
+**/list/
+**/venv/
+distributed/d_collector.egg-info
+*.pyc
